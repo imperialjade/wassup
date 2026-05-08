@@ -28,7 +28,6 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('User disconnected');
     });
-});
 
 const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => {
