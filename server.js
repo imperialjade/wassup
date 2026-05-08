@@ -3,18 +3,27 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-// Serve the HTML file
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-// Handle connections
-io.on('connection', (socket) => {
-    console.log('A user connected');
+// A list of fun random names
+const names = ["Blue Panda", "Golden Tiger", "Swift Eagle", "Neon Cat", "Cool Dragon", "Happy Hippo", "Silver Fox", "Space Whale"];
 
-    // When a message is received, send it to everyone
+io.on('connection', (socket) => {
+    // Assign a random name to this specific user
+    const randomName = names[Math.floor(Math.random() * names.length)] + " #" + Math.floor(Math.random() * 999);
+    socket.userName = randomName;
+    
+    console.log(`${socket.userName} connected`);
+
     socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
+        // Send the message PLUS the username to everyone
+        const data = {
+            name: socket.userName,
+            text: msg
+        };
+        io.emit('chat message', data);
     });
 
     socket.on('disconnect', () => {
@@ -24,5 +33,5 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => {
-    console.log(`Chat server running at http://localhost:${PORT}`);
+    console.log(`Chat server running on port ${PORT}`);
 });
