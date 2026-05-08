@@ -22,10 +22,13 @@
 }
 
 #group-pfp {
-    width: 32px; /* Shrunk from 40px */
-    height: 32px; /* Shrunk from 40px */
-    border-radius: 50%;
-    margin-right: 10px;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    margin-right: 12px;
+    object-fit: cover; /* This is key: it crops the pigeon to fit the circle */
+    display: block;
+    border: 1px solid #444; /* Adds a nice little border around the pigeon */
 }
 
 #group-name {
@@ -124,7 +127,7 @@
 </head>
 <body>
     <div id="header">
-    <img src="https://st4.depositphotos.com/5616164/30087/v/450/depositphotos_300871438-stock-illustration-dove-spy-pigeon-secret-agent.jpg">
+    <img src="https://img.freepik.com/premium-photo/pigeon-suit-looks-directly-camera-with-serious-expression_14117-931413.jpg?w=360">
     <div id="header-info">
         <div id="group-name">Hood Research Department</div>
         <div id="group-status">all niggas online</div>
