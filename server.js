@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 });
 
 // A list of fun random names
-const names = ["Blue Panda", "Golden Tiger", "Swift Eagle", "Neon Cat", "Cool Dragon", "Happy Hippo", "Silver Fox", "Space Whale"];
+const names = ["Harry Baal", "Mike Hunt", "Walter Whitestuff", "Elle Sofia", "Choclate", "Vanilla", "Shawty", "Holden Hiscock"];
 
 io.on('connection', (socket) => {
     // Assign a random name to this specific user
