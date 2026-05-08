@@ -23,7 +23,6 @@ io.on('connection', (socket) => {
     console.log(socket.userName + " joined");
     
     // ... rest of your code
-});
     socket.on('chat message', (msg) => {
         // Send the message PLUS the username to everyone
         const data = {
