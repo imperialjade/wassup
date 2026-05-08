@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Global Chat</title>
+    <title>Hood Research Department</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     <style>
-        /* Header Styling */
+     /* Slimmer Header */
 #header {
     background: #1e1e1e;
-    padding: 10px 15px;
+    padding: 6px 12px; /* Reduced vertical padding from 10px to 6px */
     display: flex;
     align-items: center;
     position: fixed;
@@ -17,36 +17,34 @@
     right: 0;
     z-index: 1000;
     border-bottom: 1px solid #333;
+    height: 50px; /* Force a specific small height */
+    box-sizing: border-box;
 }
 
 #group-pfp {
-    width: 40px;
-    height: 40px;
+    width: 32px; /* Shrunk from 40px */
+    height: 32px; /* Shrunk from 40px */
     border-radius: 50%;
-    margin-right: 12px;
-}
-
-#header-info {
-    display: flex;
-    flex-direction: column;
+    margin-right: 10px;
 }
 
 #group-name {
     font-weight: bold;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 14px; /* Shrunk from 16px */
+    line-height: 1.2;
 }
 
 #group-status {
-    color: #00ff00; /* Green for "online" */
-    font-size: 12px;
+    color: #00ff00;
+    font-size: 10px; /* Shrunk from 12px */
 }
 
-/* IMPORTANT: Push the messages down so the header doesn't cover them */
+/* Adjust message padding to match the smaller header */
 #messages { 
     list-style-type: none; 
     margin: 0; 
-    padding: 80px 15px 15px 15px; /* Added 80px top padding */
+    padding: 65px 15px 15px 15px; /* Reduced from 80px to 65px */
     display: flex;
     flex-direction: column;
 }
@@ -128,8 +126,8 @@
     <div id="header">
     <img src="https://st4.depositphotos.com/5616164/30087/v/450/depositphotos_300871438-stock-illustration-dove-spy-pigeon-secret-agent.jpg">
     <div id="header-info">
-        <div id="group-name">The Global Room</div>
-        <div id="group-status">online</div>
+        <div id="group-name">Hood Research Department</div>
+        <div id="group-status">all niggas online</div>
     </div>
 </div>
     <ul id="messages"></ul>
