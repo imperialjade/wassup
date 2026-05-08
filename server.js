@@ -8,8 +8,41 @@ app.get('/', (req, res) => {
 });
 
 // A list of fun random names
-const firstNames = ["Aggressive", "Fancy", "Sleepy", "Hyper", "Golden", "Swift", "Neon", "mighty", "Silly", "brave"];
-const lastNames = ["Panda", "Cucumber", "Wizard", "Eagle", "Cat", "Dragon", "Hippo", "Fox", "Whale", "Potato"];
+const firstNames = [
+  "Ben",
+  "Phil",
+  "Anita",
+  "Moe",
+  "Dixie",
+  "Al",
+  "Patty",
+  "Hugh",
+  "Mike",
+  "Sal",
+  "Barry",
+  "Willie",
+  "Oliver",
+  "Lou",
+  "Tess"
+];
+
+const lastNames = [
+  "Dover",
+  "McCracken",
+  "Butts",
+  "Hugenkiss",
+  "Wiener",
+  "Cox",
+  "Johnson",
+  "Booty",
+  "Balls",
+  "Cheeks",
+  "Sniffer",
+  "Nuts",
+  "Dump",
+  "Rider",
+  "Gobbler"
+];
 
 io.on('connection', (socket) => {
     // Pick one from the first list
