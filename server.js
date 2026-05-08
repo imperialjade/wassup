@@ -8,23 +8,22 @@ app.get('/', (req, res) => {
 });
 
 // A list of fun random names
-const names = ["Harry Baal", "Mike Hunt", "Walter Whitestuff", "Elle Sofia", "Choclate", "Vanilla", "Shawty", "Holden Hiscock"];
+const firstNames = ["Aggressive", "Fancy", "Sleepy", "Hyper", "Golden", "Swift", "Neon", "mighty", "Silly", "brave"];
+const lastNames = ["Panda", "Cucumber", "Wizard", "Eagle", "Cat", "Dragon", "Hippo", "Fox", "Whale", "Potato"];
 
 io.on('connection', (socket) => {
-    // Assign a random name to this specific user
-    const randomName = names[Math.floor(Math.random() * names.length)] + " #" + Math.floor(Math.random() * 999);
-    socket.userName = randomName;
+    // Pick one from the first list
+    const randomFirst = firstNames[Math.floor(Math.random() * firstNames.length)];
+    // Pick one from the second list
+    const randomLast = lastNames[Math.floor(Math.random() * lastNames.length)];
     
-    console.log(`${socket.userName} connected`);
-
-    socket.on('chat message', (msg) => {
-        // Send the message PLUS the username to everyone
-        const data = {
-            name: socket.userName,
-            text: msg
-        };
-        io.emit('chat message', data);
-    });
+    // Combine them
+    socket.userName = `${randomFirst} ${randomLast}`;
+    
+    console.log(socket.userName + " joined");
+    
+    // ... rest of your code
+});
 
     socket.on('disconnect', () => {
         console.log('User disconnected');
