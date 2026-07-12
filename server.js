@@ -44,20 +44,31 @@ const lastNames = [
   "Gobbler"
 ];
 
+// Helper function to send the current count to EVERYONE
+// Place this right ABOVE your io.on('connection') block
+function broadcastUserCount() {
+    const count = io.engine.clientsCount; 
+    io.emit('user-count', count);
+}
+
 io.on('connection', (socket) => {
-    // Pick one from the first list
+    // 1. Pick a unique random name
     const randomFirst = firstNames[Math.floor(Math.random() * firstNames.length)];
-    // Pick one from the second list
     const randomLast = lastNames[Math.floor(Math.random() * lastNames.length)];
-    
-    // Combine them
     socket.userName = `${randomFirst} ${randomLast}`;
     
-    console.log(socket.userName + " joined");
+    // 2. Grab the visitor's real IP address from Render
+    const clientIp = socket.handshake.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
+    const realIp = clientIp ? clientIp.split(',')[0] : "Unknown IP";
+
+    // Log the event to your Render console
+    console.log(`${socket.userName} joined from IP: ${realIp}`);
     
-    // ... rest of your code
+    // 3. Update the online counter for everyone immediately
+    broadcastUserCount();
+    
+    // 4. Handle incoming messages
     socket.on('chat message', (msg) => {
-        // Send the message PLUS the username to everyone
         const data = {
             name: socket.userName,
             text: msg
@@ -65,8 +76,11 @@ io.on('connection', (socket) => {
         io.emit('chat message', data);
     });
 
+    // 5. Handle when someone leaves
     socket.on('disconnect', () => {
-        console.log('User disconnected');
+        console.log(`${socket.userName} disconnected`);
+        // Force the count to drop instantly for everyone remaining
+        broadcastUserCount();
     });
 });
 
