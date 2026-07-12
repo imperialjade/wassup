@@ -175,6 +175,17 @@
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
         });
+        // Listen for user count updates from the server
+socket.on('user-count', function(count) {
+    const statusElement = document.getElementById('group-status');
+    
+    // Change the text based on the count
+    if (count === 1) {
+        statusElement.textContent = "1 person online rn";
+    } else {
+        statusElement.textContent = count + " people online rn";
+    }
+});
     </script>
 </body>
 </html>
